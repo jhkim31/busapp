@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MapSearchView.swift
 //  BusApp
 //
 //  Created by 김재현 on 2020/12/25.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MapSearchView: View {
     var body: some View {
-        MainView()
+        Text("MapSearch")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MapSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MapSearchView()
     }
 }

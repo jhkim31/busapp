@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  BookmarkView.swift
 //  BusApp
 //
 //  Created by 김재현 on 2020/12/25.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct BookmarkView: View {
     var body: some View {
-        MainView()
+        Text("BookMark")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct BookmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        BookmarkView()
     }
 }

@@ -7,19 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0CE6C725964E0600A26891 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0CE6C625964E0600A26891 /* Config.swift */; };
 		3A8D7E972596257F008E5F70 /* BusAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7E962596257F008E5F70 /* BusAppApp.swift */; };
 		3A8D7E992596257F008E5F70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7E982596257F008E5F70 /* ContentView.swift */; };
 		3A8D7E9B2596257F008E5F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D7E9A2596257F008E5F70 /* Assets.xcassets */; };
 		3A8D7E9E2596257F008E5F70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D7E9D2596257F008E5F70 /* Preview Assets.xcassets */; };
+		3A8D7EA725962595008E5F70 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7EA625962595008E5F70 /* MainView.swift */; };
+		3A8D7EB125962684008E5F70 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7EB025962684008E5F70 /* BookmarkView.swift */; };
+		3A8D7EB425962689008E5F70 /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7EB325962689008E5F70 /* MapSearchView.swift */; };
+		3A8D7EB72596268F008E5F70 /* KeywordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7EB62596268F008E5F70 /* KeywordSearchView.swift */; };
+		3AE14F72259680E1009BEDA9 /* MainGeometryReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE14F71259680E1009BEDA9 /* MainGeometryReaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0CE6C625964E0600A26891 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3A8D7E932596257F008E5F70 /* BusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8D7E962596257F008E5F70 /* BusAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAppApp.swift; sourceTree = "<group>"; };
 		3A8D7E982596257F008E5F70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3A8D7E9A2596257F008E5F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A8D7E9D2596257F008E5F70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3A8D7E9F25962580008E5F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A8D7EA625962595008E5F70 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3A8D7EB025962684008E5F70 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		3A8D7EB325962689008E5F70 /* MapSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
+		3A8D7EB62596268F008E5F70 /* KeywordSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSearchView.swift; sourceTree = "<group>"; };
+		3AE14F71259680E1009BEDA9 /* MainGeometryReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGeometryReaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			children = (
 				3A8D7E962596257F008E5F70 /* BusAppApp.swift */,
 				3A8D7E982596257F008E5F70 /* ContentView.swift */,
+				3A962AE825964C3100DBDABB /* MainMenu */,
 				3A8D7E9A2596257F008E5F70 /* Assets.xcassets */,
 				3A8D7E9F25962580008E5F70 /* Info.plist */,
 				3A8D7E9C2596257F008E5F70 /* Preview Content */,
@@ -67,6 +80,19 @@
 				3A8D7E9D2596257F008E5F70 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3A962AE825964C3100DBDABB /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3A8D7EA625962595008E5F70 /* MainView.swift */,
+				3AE14F71259680E1009BEDA9 /* MainGeometryReaderView.swift */,
+				3A8D7EB025962684008E5F70 /* BookmarkView.swift */,
+				3A8D7EB325962689008E5F70 /* MapSearchView.swift */,
+				3A8D7EB62596268F008E5F70 /* KeywordSearchView.swift */,
+				3A0CE6C625964E0600A26891 /* Config.swift */,
+			);
+			path = MainMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +165,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8D7E992596257F008E5F70 /* ContentView.swift in Sources */,
+				3A8D7EB125962684008E5F70 /* BookmarkView.swift in Sources */,
+				3AE14F72259680E1009BEDA9 /* MainGeometryReaderView.swift in Sources */,
+				3A8D7EA725962595008E5F70 /* MainView.swift in Sources */,
 				3A8D7E972596257F008E5F70 /* BusAppApp.swift in Sources */,
+				3A0CE6C725964E0600A26891 /* Config.swift in Sources */,
+				3A8D7EB72596268F008E5F70 /* KeywordSearchView.swift in Sources */,
+				3A8D7EB425962689008E5F70 /* MapSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
