@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct Config: View {
+struct ConfigSheet: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Config page")
     }
 }
 
-struct Config_Previews: PreviewProvider {
+struct ConfigSheet_Previews: PreviewProvider {
     static var previews: some View {
-        Config()
+        ConfigSheet()
     }
 }

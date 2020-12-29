@@ -10,6 +10,7 @@ import SwiftUI
 struct KeywordSearchView: View {
     var body: some View {
         Text("Keyword 검색")
+			
     }
 }
 

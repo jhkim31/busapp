@@ -7,18 +7,20 @@
 
 import SwiftUI
 
+
+
 struct MainView: View {
 	@State private var showConfig = false
 	var body: some View {
 		NavigationView{
-			MainGeometryReaderView()
+			MainViewLayout()
 			.toolbar{
 				Button(action: {showConfig.toggle()}) {
 					Image(systemName: "gearshape")
 				}
 			}
 			.sheet(isPresented: $showConfig){
-				Config()
+				ConfigSheet()
 			}
 		}
 	}
