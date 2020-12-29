@@ -16,16 +16,17 @@ struct MapSearchView: View {
 	var userLatitude: Double { locationManager.lastLocation?.coordinate.latitude ?? 0 }
 	var userLongitude: Double { locationManager.lastLocation?.coordinate.longitude ?? 0	}
 	
-	var userLatitudeToString: String { String(format: "%.5f", userLatitude) }
-	var userLongitudeToString: String { String(format: "%.5f", userLongitude) }
-	
+	var annotationItems: [MyAnnotation] = [
+		MyAnnotation(coordinate: CLLocationCoordinate2D(latitude: 37.4182667, longitude: 127.2761667), description: "금강펜테리움"),
+		MyAnnotation(coordinate: CLLocationCoordinate2D(latitude: 37.4171833, longitude: 127.2744667), description: "브라운스톤아파트")
+		]
 	
 	var body: some View {
 		VStack{
 			Text("My coordinate")
 			HStack{
-				Text(userLatitudeToString)
-				Text(userLongitudeToString)
+				Text(String(format: "%.5f", userLatitude))
+				Text(String(format: "%.5f", userLongitude))
 			}
 			Text("center coordinate")
 			HStack{
@@ -33,7 +34,15 @@ struct MapSearchView: View {
 				Text(String(format: "%.5f", region.center.longitude))
 			}
 			ZStack{
-				Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: $userTackingMode)
+				Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: $userTackingMode, annotationItems: annotationItems){ item in
+					MapAnnotation(coordinate: item.coordinate){
+						Button(action: {
+							
+						}) {
+							Image(item.imageRoute)
+						}
+					}
+				}
 					.onAppear {
 						setUserRegion(CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude))
 					}
