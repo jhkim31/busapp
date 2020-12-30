@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ViewB: View {
+	@ObservedObject var a = MakeMapAnnotation()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		Button(action: {
+			a.getHttpRequest(url: "http://localhost:5000/getNearlyStationList?latitude=37.41992949999999&longitude=127.28047942999996")
+		}) {
+			Text("hi")
+		}
     }
 }
 
