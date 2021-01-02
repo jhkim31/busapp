@@ -18,10 +18,11 @@ struct MainView: View {
 				Button(action: {showConfig.toggle()}) {
 					Image(systemName: "gearshape")
 				}
+				.sheet(isPresented: $showConfig){
+					ConfigSheet()
+				}
 			}
-			.sheet(isPresented: $showConfig){
-				ConfigSheet()
-			}
+			
 		}
 	}
 }

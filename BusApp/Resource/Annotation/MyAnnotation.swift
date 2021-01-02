@@ -14,8 +14,6 @@ struct MyAnnotation : Identifiable, Equatable{
 	}
 	
 	let id = UUID()
-	
-	var imageRoute: String = "busMark"
 	var coordinate:CLLocationCoordinate2D 
 	var stationName: String = ""
 	var stationId: String = ""

@@ -11,6 +11,7 @@ import MapKit
 class MakeMapAnnotation: ObservableObject {
 	var stringJsonData:String = ""
 	@Published var myAnnotation: [MyAnnotation] = []
+	
 	struct jsonDataStruct : Codable{
 		var nearlyStationList: [stationInfo]
 	}
@@ -54,18 +55,19 @@ class MakeMapAnnotation: ObservableObject {
 		if let data = stringJsonData, let myData = try? decoder.decode(jsonDataStruct.self, from: data){
 			for item in myData.nearlyStationList {
 				let tmp: MyAnnotation = MyAnnotation(
-					imageRoute: "busMark",
 					coordinate: CLLocationCoordinate2D(latitude: Double(item.y) ?? 0, longitude: Double(item.x) ?? 0),
 					stationName: item.stationName,
 					stationId: item.stationId,
 					mobileNo: item.mobileNo
 				)
-				myAnnotation.append(tmp)
+				DispatchQueue.main.async {
+					self.myAnnotation.append(tmp)
+				}
 			}
 		}
 	}
-	func addAnnotation(latitude: String, longitude: String) {
-		let url = "http://192.168.0.10:5000/getNearlyStationList?latitude=\(latitude)&longitude=\(longitude)"
+	func getDataFromServer(latitude: String, longitude: String) {
+		let url = "http://localhost:5000/getNearlyStationList?latitude=\(latitude)&longitude=\(longitude)"
 		print(url)
 		self.getHttpRequest(url: url)
 	}

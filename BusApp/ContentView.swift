@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MainView()
+        StationDetailView(stationId: "234001177", mobileNo: "38553")
     }
 }
 
