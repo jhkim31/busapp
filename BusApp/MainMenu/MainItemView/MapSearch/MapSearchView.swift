@@ -98,9 +98,9 @@ struct MapSearchView: View {
 					}
 					.padding(.bottom, 20)
 				}
-				if($popupToggle.wrappedValue){
-					StationInfoPopupView(popup: $popupToggle, item: annotationClass.myAnnotation[beforeSelect])
-				}
+//				if($popupToggle.wrappedValue){
+//					StationInfoPopupView(popup: $popupToggle, item: annotationClass.myAnnotation[beforeSelect])
+//				}
 			}
 		}
 		.navigationBarTitle("지도에서 찾기", displayMode: .inline)

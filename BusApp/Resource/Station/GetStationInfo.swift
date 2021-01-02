@@ -132,7 +132,7 @@ class GetStationInfo: ObservableObject {
 						self.stationInfoData.mobileNo = myData.resultBody.mobileNo
 						self.stationInfoData.districtCd = myData.resultBody.districtCd
 						self.stationInfoData.regionName = myData.resultBody.regionName
-						self.isload = 1
+						self.isload = 2
 						print(self.isload)
 					}
 				}
