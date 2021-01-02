@@ -14,6 +14,7 @@
 		3A463E6E259F362900F11CFA /* GetStationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A463E6D259F362900F11CFA /* GetStationInfo.swift */; };
 		3A6E5E1C2597A00C00556076 /* MainRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E5E1B2597A00C00556076 /* MainRowView.swift */; };
 		3A7107D62597AAAC007A9FD4 /* StationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7107D52597AAAC007A9FD4 /* StationInfo.swift */; };
+		3A7BAEB725A0D77200441A30 /* GetRouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7BAEB625A0D77200441A30 /* GetRouteInfo.swift */; };
 		3A87727025984F04004C4BBF /* BookmarkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87726F25984F04004C4BBF /* BookmarkType.swift */; };
 		3A8D7E972596257F008E5F70 /* BusAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7E962596257F008E5F70 /* BusAppApp.swift */; };
 		3A8D7E992596257F008E5F70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D7E982596257F008E5F70 /* ContentView.swift */; };
@@ -44,6 +45,7 @@
 		3A463E6D259F362900F11CFA /* GetStationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationInfo.swift; sourceTree = "<group>"; };
 		3A6E5E1B2597A00C00556076 /* MainRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowView.swift; sourceTree = "<group>"; };
 		3A7107D52597AAAC007A9FD4 /* StationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInfo.swift; sourceTree = "<group>"; };
+		3A7BAEB625A0D77200441A30 /* GetRouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRouteInfo.swift; sourceTree = "<group>"; };
 		3A87726F25984F04004C4BBF /* BookmarkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkType.swift; sourceTree = "<group>"; };
 		3A8D7E932596257F008E5F70 /* BusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8D7E962596257F008E5F70 /* BusAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAppApp.swift; sourceTree = "<group>"; };
@@ -108,12 +110,21 @@
 			path = MainScreenView;
 			sourceTree = "<group>";
 		};
+		3A7BAEB525A0D76700441A30 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				3AEC87A82598B500007214CB /* RouteInfo.swift */,
+				3A7BAEB625A0D77200441A30 /* GetRouteInfo.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		3A87726D25984E50004C4BBF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				3A19CB32259F4A8B00B4BFA3 /* Station */,
 				3A19CB31259F4A8100B4BFA3 /* Annotation */,
-				3AEC87A82598B500007214CB /* RouteInfo.swift */,
+				3A7BAEB525A0D76700441A30 /* Route */,
 				3A87726F25984F04004C4BBF /* BookmarkType.swift */,
 				3A18D6CE2598C537003F8A7B /* StationAndRouteInfo.swift */,
 			);
@@ -309,6 +320,7 @@
 				3A6E5E1C2597A00C00556076 /* MainRowView.swift in Sources */,
 				3A04AE3D259859360044EC61 /* ShowTypeButton.swift in Sources */,
 				3A8D7E972596257F008E5F70 /* BusAppApp.swift in Sources */,
+				3A7BAEB725A0D77200441A30 /* GetRouteInfo.swift in Sources */,
 				3A7107D62597AAAC007A9FD4 /* StationInfo.swift in Sources */,
 				3A0CE6C725964E0600A26891 /* ConfigSheet.swift in Sources */,
 				3A87727025984F04004C4BBF /* BookmarkType.swift in Sources */,

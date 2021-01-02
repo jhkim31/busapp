@@ -48,7 +48,7 @@ struct BookmarkView: View {
 			.background(Color(red: 201/255, green: 201/255, blue: 201/255))
 			
 			if (showStation){
-//				StationListView()
+				StationListView()
 			}
 			
 			HStack{

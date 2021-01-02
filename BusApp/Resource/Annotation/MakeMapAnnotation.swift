@@ -67,7 +67,7 @@ class MakeMapAnnotation: ObservableObject {
 		}
 	}
 	func getDataFromServer(latitude: String, longitude: String) {
-		let url = "http://localhost:5000/getNearlyStationList?latitude=\(latitude)&longitude=\(longitude)"
+		let url = "http://192.168.0.10:5000/getNearlyStationList?latitude=\(latitude)&longitude=\(longitude)"
 		print(url)
 		self.getHttpRequest(url: url)
 	}

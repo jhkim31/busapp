@@ -140,7 +140,7 @@ class GetStationInfo: ObservableObject {
 		}
 	}
 	func getDataFromServer(mobileNo: String, stationId: String) {
-		let url = "http://localhost:5000/getStationInfo?mobileNo=\(mobileNo)&stationId=\(stationId)"
+		let url = "http://192.168.0.10:5000/getStationInfo?mobileNo=\(mobileNo)&stationId=\(stationId)"
 		print(url)
 		self.getHttpRequest(url: url)
 	}
