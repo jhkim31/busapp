@@ -12,18 +12,33 @@ struct RouteDetailView: View {
 	var routeId: String
 	var body: some View {
 		VStack{
-			if getRouteInfo.isload == 1 {
+			if getRouteInfo.isload == 0 {
 				VStack{
 					Text(getRouteInfo.routeInfoData.routeId)
 					Text(getRouteInfo.routeInfoData.routeName)
 					ScrollView{
 						ForEach(getRouteInfo.routeInfoData.stationLists, id: \.self){ item in
-							HStack{
-								Text(item.stationName)
-								Text(item.stationId)
+							NavigationLink(destination: StationDetailView(mobileNo: item.mobileNo, stationId: item.stationId)){
+								HStack{
+									Text(item.stationName)
+									Text(item.stationId)
+									Text(item.mobileNo)
+								}
 							}
 						}
 					}
+				}
+			} else if getRouteInfo.isload == 1 {
+				Text(getRouteInfo.resultCode)
+				Text(getRouteInfo.errMsg)
+			} else if getRouteInfo.isload == 2 {
+				Text(getRouteInfo.routeInfoData.routeId)
+				Text(getRouteInfo.routeInfoData.routeName)
+				Text(getRouteInfo.resultCode)
+				Text(getRouteInfo.errMsg)
+			} else {
+				VStack {
+					Text("로딩중...")
 				}
 			}
 		}

@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         MainView()
+//		StationInfoPopupView(stationId: "234001177", mobileNo: "38553", popup: .constant(true))
     }
 }
 

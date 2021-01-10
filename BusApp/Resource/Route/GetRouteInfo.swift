@@ -32,11 +32,15 @@ class GetRouteInfo: ObservableObject {
 		districtCd: "nil",
 		stationLists: []
 	)
-	@Published var isload:Int = 0
+	@Published var isload:Int = -1
 	
-	// 0 : 초기화
-	// 1 : 정상 get
-	// 2 : 노선 리스트 못받음
+	// -1 : 초기화
+	// 0 : 정상 get
+	// 1 : operationInfo 받지 못함
+	// 2 : operationInfo는 받고, 정류장 리스트를 받지 못함
+	
+	@Published var errMsg: String = ""
+	@Published var resultCode: String = ""
 	
 	struct result_Header : Codable{
 		var resultHeader: resultHeader
@@ -63,7 +67,7 @@ class GetRouteInfo: ObservableObject {
 		var upFirstTime: String
 		var upLastTime: String
 	}
-
+	
 	struct resultBody : Codable{
 		var routeId: String
 		var routeName: String
@@ -71,7 +75,7 @@ class GetRouteInfo: ObservableObject {
 		var districtCd: String
 		var stationLists: [stationListStruct_tmp]
 	}
-
+	
 	struct stationListStruct_tmp : Codable{
 		var districtCd: String
 		var mobileNo: String
@@ -80,13 +84,15 @@ class GetRouteInfo: ObservableObject {
 		var stationSeq:String
 		var turnYn:String
 	}
-
+	
 	
 	func getHttpRequest(url: String){
 		let url = URL(string: url)
 		let task = URLSession.shared.dataTask(with: url!, completionHandler: {
 			(data, response, error) -> Void in
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
+				self.isload = 9
+				self.errMsg = "알 수 없는 에러입니다."
 				print("ERROR")
 				return
 			}
@@ -97,7 +103,6 @@ class GetRouteInfo: ObservableObject {
 			//			print(returnStr)
 			//			print(type(of: returnStr))
 			self.stringJsonData = returnStr
-			print(self.stringJsonData)
 			
 			self.decodeJson(jsonData: self.stringJsonData)
 			
@@ -107,16 +112,11 @@ class GetRouteInfo: ObservableObject {
 		
 	}
 	func decodeJson(jsonData: String) {
-		print(self.stringJsonData)
-		print("decoding")
-		
 		let decoder = JSONDecoder()
 		let stringJsonDatas = jsonData.data(using: .utf8)
-		print("11")
-		if let data = stringJsonDatas, let myData = try? decoder.decode(result_Header.self, from: data){
-			print("head")
-			print(myData)
-			if myData.resultHeader.resultCode == "0"{
+		if let data = stringJsonDatas, let myHead = try? decoder.decode(result_Header.self, from: data){
+			print("resultCode = \(myHead.resultHeader.resultCode), resultMsg = \(myHead.resultHeader.resultMsg)")
+			if myHead.resultHeader.resultCode == "0"{
 				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body.self, from: data){
 					let operationInfoStruct = OperationInfoStruct(
 						downFirstTime: myData.resultBody.operationInfo.downLastTime,
@@ -150,21 +150,52 @@ class GetRouteInfo: ObservableObject {
 						self.routeInfoData.routeName = myData.resultBody.routeName
 						self.routeInfoData.districtCd = myData.resultBody.districtCd
 						self.routeInfoData.stationLists = tmpList
-						self.isload = 1
+						self.isload = 0
+					}
+				}
+			} else if myHead.resultHeader.resultCode == "1" || myHead.resultHeader.resultCode == "2"  {
+				DispatchQueue.main.async {
+					self.isload = 1
+					self.resultCode = myHead.resultHeader.resultCode
+					self.errMsg = myHead.resultHeader.resultMsg
+				}
+			} else if myHead.resultHeader.resultCode == "3" || myHead.resultHeader.resultCode == "4" {
+				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body.self, from: data){
+					let operationInfoStruct = OperationInfoStruct(
+						downFirstTime: myData.resultBody.operationInfo.downLastTime,
+						downLastTime: myData.resultBody.operationInfo.downLastTime,
+						endMobileNo: myData.resultBody.operationInfo.endMobileNo,
+						endStationId: myData.resultBody.operationInfo.endStationId,
+						endStationName: myData.resultBody.operationInfo.endStationName,
+						nPeekAlloc: myData.resultBody.operationInfo.nPeekAlloc,
+						peekAlloc: myData.resultBody.operationInfo.peekAlloc,
+						startMobileNo: myData.resultBody.operationInfo.startMobileNo,
+						startStationId: myData.resultBody.operationInfo.startStationId,
+						startStationName: myData.resultBody.operationInfo.startStationName,
+						upFirstTime: myData.resultBody.operationInfo.upFirstTime,
+						upLastTime: myData.resultBody.operationInfo.upLastTime
+					)
+					DispatchQueue.main.async {
+						self.routeInfoData.operationInfo = operationInfoStruct
+						self.routeInfoData.routeId = myData.resultBody.routeId
+						self.routeInfoData.routeName = myData.resultBody.routeName
+						self.routeInfoData.districtCd = myData.resultBody.districtCd
+						self.isload = 2
+						self.resultCode = myHead.resultHeader.resultCode
+						self.errMsg = myHead.resultHeader.resultMsg
 					}
 				}
 			} else {
-				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body.self, from: data){
-					print("body2")
-					DispatchQueue.main.async {
-						self.isload = 2
-					}
+				DispatchQueue.main.async {
+					self.isload = 9
+					self.resultCode = myHead.resultHeader.resultCode
+					self.errMsg = myHead.resultHeader.resultMsg
 				}
 			}
 		}
 	}
 	func getDataFromServer(routeId: String) {
-		let url = "http://192.168.0.10:5000/getRouteInfo?routeId=\(routeId)"
+		let url = "http://\(config.host)/getRouteInfo?routeId=\(routeId)"
 		print(url)
 		self.getHttpRequest(url: url)
 	}

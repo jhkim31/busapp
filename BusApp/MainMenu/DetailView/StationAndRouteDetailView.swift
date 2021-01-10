@@ -13,6 +13,7 @@ struct StationAndRouteDetailView: View {
 		VStack{
 			Text(stationAndRoute.routeId)
 			Text(stationAndRoute.stationId)
+				
 		}
         
     }

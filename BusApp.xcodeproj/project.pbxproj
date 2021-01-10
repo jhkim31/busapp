@@ -27,13 +27,14 @@
 		3A91C3332598771000E42170 /* StationAndRouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91C3322598771000E42170 /* StationAndRouteListView.swift */; };
 		3A91C3362598771900E42170 /* StationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91C3352598771900E42170 /* StationListView.swift */; };
 		3A91C3392598771E00E42170 /* RouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91C3382598771E00E42170 /* RouteListView.swift */; };
-		3AB04FFB259C6DBB0083B1E9 /* MakeMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB04FFA259C6DBB0083B1E9 /* MakeMapAnnotation.swift */; };
+		3AB04FFB259C6DBB0083B1E9 /* GetAnnotationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB04FFA259C6DBB0083B1E9 /* GetAnnotationData.swift */; };
 		3ABCB34F259A276500A1A271 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCB34E259A276500A1A271 /* LocationManager.swift */; };
 		3ACC1C91259BA78A00769FA8 /* MyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC1C90259BA78A00769FA8 /* MyAnnotation.swift */; };
 		3ADC08212598786D008079D5 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC08202598786D008079D5 /* RouteDetailView.swift */; };
 		3ADC082425987873008079D5 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC082325987873008079D5 /* StationDetailView.swift */; };
 		3ADC08272598787E008079D5 /* StationAndRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC08262598787E008079D5 /* StationAndRouteDetailView.swift */; };
 		3AE14F72259680E1009BEDA9 /* MainViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE14F71259680E1009BEDA9 /* MainViewLayout.swift */; };
+		3AE6E8A125A4CA6F0090D5D3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE6E8A025A4CA6F0090D5D3 /* Config.swift */; };
 		3AEC87A92598B500007214CB /* RouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC87A82598B500007214CB /* RouteInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,13 +61,14 @@
 		3A91C3322598771000E42170 /* StationAndRouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAndRouteListView.swift; sourceTree = "<group>"; };
 		3A91C3352598771900E42170 /* StationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListView.swift; sourceTree = "<group>"; };
 		3A91C3382598771E00E42170 /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
-		3AB04FFA259C6DBB0083B1E9 /* MakeMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMapAnnotation.swift; sourceTree = "<group>"; };
+		3AB04FFA259C6DBB0083B1E9 /* GetAnnotationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnnotationData.swift; sourceTree = "<group>"; };
 		3ABCB34E259A276500A1A271 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		3ACC1C90259BA78A00769FA8 /* MyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnnotation.swift; sourceTree = "<group>"; };
 		3ADC08202598786D008079D5 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		3ADC082325987873008079D5 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		3ADC08262598787E008079D5 /* StationAndRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAndRouteDetailView.swift; sourceTree = "<group>"; };
 		3AE14F71259680E1009BEDA9 /* MainViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewLayout.swift; sourceTree = "<group>"; };
+		3AE6E8A025A4CA6F0090D5D3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3AEC87A82598B500007214CB /* RouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				3ACC1C90259BA78A00769FA8 /* MyAnnotation.swift */,
-				3AB04FFA259C6DBB0083B1E9 /* MakeMapAnnotation.swift */,
+				3AB04FFA259C6DBB0083B1E9 /* GetAnnotationData.swift */,
 			);
 			path = Annotation;
 			sourceTree = "<group>";
@@ -93,8 +95,8 @@
 		3A19CB32259F4A8B00B4BFA3 /* Station */ = {
 			isa = PBXGroup;
 			children = (
-				3A463E6D259F362900F11CFA /* GetStationInfo.swift */,
 				3A7107D52597AAAC007A9FD4 /* StationInfo.swift */,
+				3A463E6D259F362900F11CFA /* GetStationInfo.swift */,
 			);
 			path = Station;
 			sourceTree = "<group>";
@@ -127,6 +129,7 @@
 				3A7BAEB525A0D76700441A30 /* Route */,
 				3A87726F25984F04004C4BBF /* BookmarkType.swift */,
 				3A18D6CE2598C537003F8A7B /* StationAndRouteInfo.swift */,
+				3AE6E8A025A4CA6F0090D5D3 /* Config.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -311,7 +314,7 @@
 				3A463E6B259F21D600F11CFA /* StationInfoPopupView.swift in Sources */,
 				3A8D7EB125962684008E5F70 /* BookmarkView.swift in Sources */,
 				3AE14F72259680E1009BEDA9 /* MainViewLayout.swift in Sources */,
-				3AB04FFB259C6DBB0083B1E9 /* MakeMapAnnotation.swift in Sources */,
+				3AB04FFB259C6DBB0083B1E9 /* GetAnnotationData.swift in Sources */,
 				3AEC87A92598B500007214CB /* RouteInfo.swift in Sources */,
 				3ADC082425987873008079D5 /* StationDetailView.swift in Sources */,
 				3ADC08272598787E008079D5 /* StationAndRouteDetailView.swift in Sources */,
@@ -321,6 +324,7 @@
 				3A04AE3D259859360044EC61 /* ShowTypeButton.swift in Sources */,
 				3A8D7E972596257F008E5F70 /* BusAppApp.swift in Sources */,
 				3A7BAEB725A0D77200441A30 /* GetRouteInfo.swift in Sources */,
+				3AE6E8A125A4CA6F0090D5D3 /* Config.swift in Sources */,
 				3A7107D62597AAAC007A9FD4 /* StationInfo.swift in Sources */,
 				3A0CE6C725964E0600A26891 /* ConfigSheet.swift in Sources */,
 				3A87727025984F04004C4BBF /* BookmarkType.swift in Sources */,

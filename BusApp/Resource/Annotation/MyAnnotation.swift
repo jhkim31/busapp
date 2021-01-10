@@ -10,7 +10,7 @@ import MapKit
 
 struct MyAnnotation : Identifiable, Equatable{
 	static func == (lhs: MyAnnotation, rhs: MyAnnotation) -> Bool {
-		lhs.mobileNo == rhs.mobileNo
+		lhs.mobileNo == rhs.mobileNo && lhs.stationId == rhs.stationId
 	}
 	
 	let id = UUID()
@@ -18,7 +18,8 @@ struct MyAnnotation : Identifiable, Equatable{
 	var stationName: String = ""
 	var stationId: String = ""
 	var mobileNo: String = ""
-	var showStationName: Bool = false
+	var annotationIndex: Int?
+	var showName: Bool = false
 }
 
 
