@@ -44,16 +44,24 @@ struct StationInfoPopupView: View {
 					}
 				}
 			} else if getStationInfo_popup.informationLoad == 1 {
-				Text(getStationInfo_popup.stationInfoData.stationName)
-				Text(getStationInfo_popup.stationInfoData.stationId)
-				Text(getStationInfo_popup.stationInfoData.mobileNo)
-				Text(getStationInfo_popup.resultCode)
-				Text(getStationInfo_popup.errMsg)
+				VStack{
+					Text(getStationInfo_popup.stationInfoData.stationName)
+					Text(getStationInfo_popup.stationInfoData.stationId)
+					Text(getStationInfo_popup.stationInfoData.mobileNo)
+					Text(getStationInfo_popup.resultCode)
+					Text(getStationInfo_popup.errMsg)
+				}
 			} else if getStationInfo_popup.informationLoad == 2 {
-				Text(getStationInfo_popup.resultCode)
-				Text(getStationInfo_popup.errMsg)
+				VStack{
+					Text(getStationInfo_popup.resultCode)
+					Text(getStationInfo_popup.errMsg)
+				}
 			} else {
-				Text("로딩중...")
+				VStack{
+					Text("로딩중...")
+					Text(String(getStationInfo_popup.informationLoad))
+				}
+				
 			}
 			Spacer()
 		}

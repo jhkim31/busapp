@@ -78,9 +78,14 @@ class GetAnnotationData: ObservableObject {
 						)
 						DispatchQueue.main.async {
 							self.myAnnotation.append(tmp)
+							self.isload = 0
 						}
 						index += 1
 					}
+				}
+			} else {
+				DispatchQueue.main.async {
+					self.isload = 1
 				}
 			}
 		}

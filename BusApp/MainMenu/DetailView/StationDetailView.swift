@@ -20,6 +20,7 @@ struct StationDetailView: View {
 					Text(getStationInfo.stationInfoData.mobileNo)
 					Text(getStationInfo.stationInfoData.districtCd)
 					Button(action: {
+						getStationInfo.arrivalInfoLoad = -1
 						getData2()
 					}) {
 						Image(systemName: "arrow.clockwise")
@@ -42,7 +43,7 @@ struct StationDetailView: View {
 													.foregroundColor(.blue)
 											} else {
 												Text("도착 정보가 없습니다.")
-													.foregroundColor(.orange)
+													.foregroundColor(.yellow)
 											}
 										} else if (getStationInfo.arrivalInfoLoad == 1) {
 											Text("도착 정보가 없습니다.")

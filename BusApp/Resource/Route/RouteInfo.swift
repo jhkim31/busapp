@@ -26,10 +26,20 @@ struct RouteInfo : Codable, Identifiable{
 }
 
 struct stationListStruct : Codable, Hashable{
+	
+	func hash(into hasher: inout Hasher) {										// hashable를 위해 필요
+	  hasher.combine(stationId )
+	}
+	
+	static func == (lhs: stationListStruct, rhs: stationListStruct) -> Bool {	// Equatable 채택에 필요, 나중 노선의 시간값을 적용하는데 필요함
+		lhs.stationSeq == rhs.stationSeq
+	}
+	
 	var districtCd: String
 	var mobileNo: String
 	var stationId: String
 	var stationName: String
 	var stationSeq:String
 	var turnYn:String
+	var currentLocation: Bool = false
 }

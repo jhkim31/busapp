@@ -12,6 +12,7 @@
 		3A18D6CF2598C537003F8A7B /* StationAndRouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A18D6CE2598C537003F8A7B /* StationAndRouteInfo.swift */; };
 		3A463E6B259F21D600F11CFA /* StationInfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A463E6A259F21D600F11CFA /* StationInfoPopupView.swift */; };
 		3A463E6E259F362900F11CFA /* GetStationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A463E6D259F362900F11CFA /* GetStationInfo.swift */; };
+		3A64076A25AB58A1007BDCB7 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64076925AB58A1007BDCB7 /* test.swift */; };
 		3A6E5E1C2597A00C00556076 /* MainRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E5E1B2597A00C00556076 /* MainRowView.swift */; };
 		3A7107D62597AAAC007A9FD4 /* StationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7107D52597AAAC007A9FD4 /* StationInfo.swift */; };
 		3A7BAEB725A0D77200441A30 /* GetRouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7BAEB625A0D77200441A30 /* GetRouteInfo.swift */; };
@@ -44,6 +45,7 @@
 		3A18D6CE2598C537003F8A7B /* StationAndRouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAndRouteInfo.swift; sourceTree = "<group>"; };
 		3A463E6A259F21D600F11CFA /* StationInfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInfoPopupView.swift; sourceTree = "<group>"; };
 		3A463E6D259F362900F11CFA /* GetStationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationInfo.swift; sourceTree = "<group>"; };
+		3A64076925AB58A1007BDCB7 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		3A6E5E1B2597A00C00556076 /* MainRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowView.swift; sourceTree = "<group>"; };
 		3A7107D52597AAAC007A9FD4 /* StationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInfo.swift; sourceTree = "<group>"; };
 		3A7BAEB625A0D77200441A30 /* GetRouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRouteInfo.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				3A8D7E962596257F008E5F70 /* BusAppApp.swift */,
 				3A8D7E982596257F008E5F70 /* ContentView.swift */,
+				3A64076925AB58A1007BDCB7 /* test.swift */,
 				3A962AE825964C3100DBDABB /* MainMenu */,
 				3A87726D25984E50004C4BBF /* Resource */,
 				3A8D7E9A2596257F008E5F70 /* Assets.xcassets */,
@@ -322,6 +325,7 @@
 				3A8D7EA725962595008E5F70 /* MainView.swift in Sources */,
 				3A6E5E1C2597A00C00556076 /* MainRowView.swift in Sources */,
 				3A04AE3D259859360044EC61 /* ShowTypeButton.swift in Sources */,
+				3A64076A25AB58A1007BDCB7 /* test.swift in Sources */,
 				3A8D7E972596257F008E5F70 /* BusAppApp.swift in Sources */,
 				3A7BAEB725A0D77200441A30 /* GetRouteInfo.swift in Sources */,
 				3AE6E8A125A4CA6F0090D5D3 /* Config.swift in Sources */,

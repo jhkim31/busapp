@@ -38,6 +38,7 @@ class GetRouteInfo: ObservableObject {
 	// 0 : 정상 get
 	// 1 : operationInfo 받지 못함
 	// 2 : operationInfo는 받고, 정류장 리스트를 받지 못함
+	@Published var currentLocationDataLoad = -1
 	
 	@Published var errMsg: String = ""
 	@Published var resultCode: String = ""
@@ -194,9 +195,89 @@ class GetRouteInfo: ObservableObject {
 			}
 		}
 	}
+	
+	func getHttpRequest2(url: String){
+		let url = URL(string: url)
+		let task = URLSession.shared.dataTask(with: url!, completionHandler: {
+			(data, response, error) -> Void in
+			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
+				DispatchQueue.main.async {
+					self.currentLocationDataLoad = 9
+					self.errMsg = "알 수 없는 에러입니다."
+				}
+				print("ERROR")
+				return
+			}
+			// Http 통신이 성공했을 경우, php나 서버에서 echo로 찍어줬을 때 받는 방법
+			guard let returnStr = String(data: data!, encoding: .utf8) else {
+				return
+			}
+			//			print(returnStr)
+			//			print(type(of: returnStr))
+			self.stringJsonData = returnStr
+			
+			self.decodeJson2(jsonData: self.stringJsonData)
+			
+		})
+		// 실행
+		task.resume()
+		
+	}
+	
+	func decodeJson2(jsonData: String){
+		let decoder = JSONDecoder()
+		let stringJsonDatas = jsonData.data(using: .utf8)
+		struct result_Body2 : Codable {
+			var resultBody: currentLocationList
+		}
+		
+		struct currentLocationList : Codable{
+			var busLocationList: [currentLocation]
+		}
+		
+		struct currentLocation : Codable{
+			var stationId: String
+			var stationSeq: String
+		}
+		if let data = stringJsonDatas, let myHead = try? decoder.decode(result_Header.self, from: data){
+			print("resultCode = \(myHead.resultHeader.resultCode), resultMsg = \(myHead.resultHeader.resultMsg)")
+			if myHead.resultHeader.resultCode == "0"{
+				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body2.self, from: data){
+					myData.resultBody.busLocationList.forEach { item in
+						if let i = (self.routeInfoData.stationLists.firstIndex(of: stationListStruct(districtCd: "", mobileNo: "", stationId: item.stationId, stationName: "", stationSeq: item.stationSeq, turnYn: ""))){
+							DispatchQueue.main.async {
+								self.routeInfoData.stationLists[i].currentLocation = true
+							}
+							
+						}
+					}
+				}
+			} else if myHead.resultHeader.resultCode == "1"{
+				DispatchQueue.main.async {
+					self.currentLocationDataLoad = 1
+					self.resultCode = myHead.resultHeader.resultCode
+					self.errMsg = myHead.resultHeader.resultMsg
+				}
+			} else {
+				DispatchQueue.main.async {
+					self.isload = 9
+					self.resultCode = myHead.resultHeader.resultCode
+					self.errMsg = myHead.resultHeader.resultMsg
+				}
+			}
+		}
+	}
+	
+	
 	func getDataFromServer(routeId: String) {
 		let url = "http://\(config.host)/getRouteInfo?routeId=\(routeId)"
 		print(url)
 		self.getHttpRequest(url: url)
+	}
+	
+	func getCurrentLocationData(routeId: String) {
+		let url = "http://\(config.host)/getCurrentLocation?routeId=\(routeId)"
+		print(url)
+		self.getHttpRequest2(url: url)
 	}
 }
