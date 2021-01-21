@@ -21,16 +21,16 @@ struct MapSearchView: View {
 	
 	var body: some View {
 		VStack{
-//			Text("My coordinate")
-//			HStack{
-//				Text(String(format: "%.5f", userLatitude))
-//				Text(String(format: "%.5f", userLongitude))
-//			}
-//			Text("center coordinate")
-//			HStack{
-//				Text(String(format: "%.5f", region.center.latitude))
-//				Text(String(format: "%.5f", region.center.longitude))
-//			}
+			//			Text("My coordinate")
+			//			HStack{
+			//				Text(String(format: "%.5f", userLatitude))
+			//				Text(String(format: "%.5f", userLongitude))
+			//			}
+			//			Text("center coordinate")
+			//			HStack{
+			//				Text(String(format: "%.5f", region.center.latitude))
+			//				Text(String(format: "%.5f", region.center.longitude))
+			//			}
 			ZStack{
 				Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: $userTackingMode, annotationItems: annotationClass.myAnnotation){ item in
 					MapAnnotation(coordinate: item.coordinate){
@@ -41,23 +41,10 @@ struct MapSearchView: View {
 							withAnimation {
 								setRegion(item.coordinate, zoom: 0.0025 > region.span.latitudeDelta ? region.span.latitudeDelta : 0.0025)
 							}
-//							if let foo = item.annotationIndex {
-//								annotationClass.showName(index: foo)
-//							}
 						}) {
-							VStack{
-//								if let foo = item.annotationIndex {
-//									if(annotationClass.myAnnotation[foo].showName) {
-//										Text(item.stationName)
-//											.fontWeight(.bold)
-//											.frame(width: 200)
-//											.foregroundColor(.black)
-//									}
-//								}
-								Image(systemName: "largecircle.fill.circle")
-									.font(.system(size: 20))
-									.foregroundColor(Color(red: 136/255, green: 2/255, blue: 224/255))
-							}
+							Image(systemName: "largecircle.fill.circle")
+								.font(.system(size: 25))
+								.foregroundColor(item.districtCd == "2" ? Color(red: 136/255, green: 2/255, blue: 224/255) : Color.red)
 						}
 					}
 				}
@@ -80,7 +67,7 @@ struct MapSearchView: View {
 						}){
 							Image(systemName: "scope")
 								.font(.system(size: 25))
-								.padding(5)
+								.padding(8)
 						}
 						Spacer()
 					}
@@ -90,7 +77,7 @@ struct MapSearchView: View {
 					Button(action: {
 						reloadAnnotation()
 						withAnimation {
-						setRegion(CLLocationCoordinate2D(latitude: region.center.latitude, longitude: region.center.longitude), zoom: 0.015)
+							setRegion(CLLocationCoordinate2D(latitude: region.center.latitude, longitude: region.center.longitude), zoom: 0.015)
 						}
 					}) {
 						Text("현재 위치에서 검색")

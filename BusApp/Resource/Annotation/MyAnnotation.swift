@@ -20,6 +20,7 @@ struct MyAnnotation : Identifiable, Equatable{				//정류장을 지도에 표�
 	var mobileNo: String						// 정류장의 5자리번호 (검색을 위해 필요함)
 	var annotationIndex: Int?					// 인덱스번호 (사용 안함)
 	var showName: Bool = false					// 이름을 나타내는 Bool 필드 (사용 안함)
+	var districtCd: String
 }
 
 

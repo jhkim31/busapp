@@ -21,6 +21,7 @@ struct StationInfoPopupView: View {
 					popup = false
 				}) {
 					Text("닫기")
+						.font(.system(size: 20))
 				}
 			}
 			if getStationInfo_popup.informationLoad == 0 {
@@ -48,13 +49,9 @@ struct StationInfoPopupView: View {
 					Text(getStationInfo_popup.stationInfoData.stationName)
 					Text(getStationInfo_popup.stationInfoData.stationId)
 					Text(getStationInfo_popup.stationInfoData.mobileNo)
-					Text(getStationInfo_popup.resultCode)
-					Text(getStationInfo_popup.errMsg)
 				}
 			} else if getStationInfo_popup.informationLoad == 2 {
 				VStack{
-					Text(getStationInfo_popup.resultCode)
-					Text(getStationInfo_popup.errMsg)
 				}
 			} else {
 				VStack{

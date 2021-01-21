@@ -41,13 +41,14 @@ class GetAnnotationData: ObservableObject {
 		var stationName: String
 		var x: String
 		var y: String
+		var districtCd: String
 	}
 	func getHttpRequest(url: String){
 		let url = URL(string: url)
 		let task = URLSession.shared.dataTask(with: url!, completionHandler: {
 			(data, response, error) -> Void in
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
-				self.isload = 9
+				DispatchQueue.main.async { self.isload = 9 }
 				print("ERROR")
 				return
 			}
@@ -67,14 +68,15 @@ class GetAnnotationData: ObservableObject {
 		if let data = stringJsonDatas, let myHead = try? decoder.decode(result_Header.self, from: data){
 			if (myHead.resultHeader.resultCode == "0" ) {
 				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body.self, from: data){
-					var index = 0;
+					var index = 0
 					for item in myData.resultBody.nearlyStationList {
 						let tmp: MyAnnotation = MyAnnotation(
 							coordinate: CLLocationCoordinate2D(latitude: Double(item.y) ?? 0, longitude: Double(item.x) ?? 0),
 							stationName: item.stationName,
 							stationId: item.stationId,
 							mobileNo: item.mobileNo,
-							annotationIndex: index
+							annotationIndex: index,
+							districtCd: item.districtCd
 						)
 						DispatchQueue.main.async {
 							self.myAnnotation.append(tmp)

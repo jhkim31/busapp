@@ -32,6 +32,7 @@ class GetRouteInfo: ObservableObject {
 		districtCd: "nil",
 		stationLists: []
 	)
+	@Published var RunningBus: Int = 0
 	@Published var isload:Int = -1
 	
 	// -1 : 초기화
@@ -92,23 +93,17 @@ class GetRouteInfo: ObservableObject {
 		let task = URLSession.shared.dataTask(with: url!, completionHandler: {
 			(data, response, error) -> Void in
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
-				self.isload = 9
-				self.errMsg = "알 수 없는 에러입니다."
+				DispatchQueue.main.async { self.isload = 1 }
 				print("ERROR")
 				return
 			}
-			// Http 통신이 성공했을 경우, php나 서버에서 echo로 찍어줬을 때 받는 방법
 			guard let returnStr = String(data: data!, encoding: .utf8) else {
 				return
 			}
-			//			print(returnStr)
-			//			print(type(of: returnStr))
 			self.stringJsonData = returnStr
 			
 			self.decodeJson(jsonData: self.stringJsonData)
-			
 		})
-		// 실행
 		task.resume()
 		
 	}
@@ -117,8 +112,10 @@ class GetRouteInfo: ObservableObject {
 		let stringJsonDatas = jsonData.data(using: .utf8)
 		if let data = stringJsonDatas, let myHead = try? decoder.decode(result_Header.self, from: data){
 			print("resultCode = \(myHead.resultHeader.resultCode), resultMsg = \(myHead.resultHeader.resultMsg)")
+			
 			if myHead.resultHeader.resultCode == "0"{
 				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body.self, from: data){
+					
 					let operationInfoStruct = OperationInfoStruct(
 						downFirstTime: myData.resultBody.operationInfo.downLastTime,
 						downLastTime: myData.resultBody.operationInfo.downLastTime,
@@ -154,43 +151,9 @@ class GetRouteInfo: ObservableObject {
 						self.isload = 0
 					}
 				}
-			} else if myHead.resultHeader.resultCode == "1" || myHead.resultHeader.resultCode == "2"  {
-				DispatchQueue.main.async {
-					self.isload = 1
-					self.resultCode = myHead.resultHeader.resultCode
-					self.errMsg = myHead.resultHeader.resultMsg
-				}
-			} else if myHead.resultHeader.resultCode == "3" || myHead.resultHeader.resultCode == "4" {
-				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body.self, from: data){
-					let operationInfoStruct = OperationInfoStruct(
-						downFirstTime: myData.resultBody.operationInfo.downLastTime,
-						downLastTime: myData.resultBody.operationInfo.downLastTime,
-						endMobileNo: myData.resultBody.operationInfo.endMobileNo,
-						endStationId: myData.resultBody.operationInfo.endStationId,
-						endStationName: myData.resultBody.operationInfo.endStationName,
-						nPeekAlloc: myData.resultBody.operationInfo.nPeekAlloc,
-						peekAlloc: myData.resultBody.operationInfo.peekAlloc,
-						startMobileNo: myData.resultBody.operationInfo.startMobileNo,
-						startStationId: myData.resultBody.operationInfo.startStationId,
-						startStationName: myData.resultBody.operationInfo.startStationName,
-						upFirstTime: myData.resultBody.operationInfo.upFirstTime,
-						upLastTime: myData.resultBody.operationInfo.upLastTime
-					)
-					DispatchQueue.main.async {
-						self.routeInfoData.operationInfo = operationInfoStruct
-						self.routeInfoData.routeId = myData.resultBody.routeId
-						self.routeInfoData.routeName = myData.resultBody.routeName
-						self.routeInfoData.districtCd = myData.resultBody.districtCd
-						self.isload = 2
-						self.resultCode = myHead.resultHeader.resultCode
-						self.errMsg = myHead.resultHeader.resultMsg
-					}
-				}
 			} else {
 				DispatchQueue.main.async {
-					self.isload = 9
-					self.resultCode = myHead.resultHeader.resultCode
-					self.errMsg = myHead.resultHeader.resultMsg
+					self.isload = 1
 				}
 			}
 		}
@@ -203,23 +166,18 @@ class GetRouteInfo: ObservableObject {
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
 				DispatchQueue.main.async {
 					self.currentLocationDataLoad = 9
-					self.errMsg = "알 수 없는 에러입니다."
 				}
 				print("ERROR")
 				return
 			}
-			// Http 통신이 성공했을 경우, php나 서버에서 echo로 찍어줬을 때 받는 방법
 			guard let returnStr = String(data: data!, encoding: .utf8) else {
 				return
 			}
-			//			print(returnStr)
-			//			print(type(of: returnStr))
 			self.stringJsonData = returnStr
 			
 			self.decodeJson2(jsonData: self.stringJsonData)
 			
 		})
-		// 실행
 		task.resume()
 		
 	}
@@ -240,29 +198,22 @@ class GetRouteInfo: ObservableObject {
 			var stationSeq: String
 		}
 		if let data = stringJsonDatas, let myHead = try? decoder.decode(result_Header.self, from: data){
-			print("resultCode = \(myHead.resultHeader.resultCode), resultMsg = \(myHead.resultHeader.resultMsg)")
 			if myHead.resultHeader.resultCode == "0"{
 				if let data = stringJsonDatas, let myData = try? decoder.decode(result_Body2.self, from: data){
+					DispatchQueue.main.async { self.RunningBus = myData.resultBody.busLocationList.count }
 					myData.resultBody.busLocationList.forEach { item in
 						if let i = (self.routeInfoData.stationLists.firstIndex(of: stationListStruct(districtCd: "", mobileNo: "", stationId: item.stationId, stationName: "", stationSeq: item.stationSeq, turnYn: ""))){
 							DispatchQueue.main.async {
-								self.routeInfoData.stationLists[i].currentLocation = true
+								self.currentLocationDataLoad = 0
+								self.routeInfoData.stationLists[i + 1].currentLocation = true
 							}
 							
 						}
 					}
 				}
-			} else if myHead.resultHeader.resultCode == "1"{
-				DispatchQueue.main.async {
-					self.currentLocationDataLoad = 1
-					self.resultCode = myHead.resultHeader.resultCode
-					self.errMsg = myHead.resultHeader.resultMsg
-				}
 			} else {
 				DispatchQueue.main.async {
-					self.isload = 9
-					self.resultCode = myHead.resultHeader.resultCode
-					self.errMsg = myHead.resultHeader.resultMsg
+					self.currentLocationDataLoad = 1
 				}
 			}
 		}

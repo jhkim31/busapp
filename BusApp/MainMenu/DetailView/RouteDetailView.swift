@@ -18,96 +18,27 @@ struct RouteDetailView: View {
 					Text(getRouteInfo.routeInfoData.routeId)
 					Text(getRouteInfo.routeInfoData.routeName)
 					Button(action: {
-						getData()
+						getData2()
 					}) {
 						Image(systemName: "arrow.clockwise")
 					}
+					if (getRouteInfo.currentLocationDataLoad == 0){
+						Text("\(getRouteInfo.RunningBus)대 운행중")
+					}
 					ScrollView{
-						ForEach(getRouteInfo.routeInfoData.stationLists, id: \.self){ item in
-							if item.mobileNo == "via" {
-								ZStack{
-									HStack{
-										Text(item.stationName)
-											.lineLimit(1)
-											.foregroundColor(.gray)
-										Text(item.stationId)
-										Text(item.mobileNo)
-										Text(item.districtCd)
-										Spacer()
-									}
-									.font(.system(size:20))
-									.padding(.leading, 30)
-									.frame(height:50)
-									.overlay(
-										ZStack{
-											HStack{
-												Circle()
-													.frame(width:10)
-													.foregroundColor(.gray)
-												Spacer()
-											}
-											.padding(.leading, 12)
-											HStack{
-												if(item.currentLocation){
-													Image(systemName: "bus")
-														.offset(y: 25)
-														.foregroundColor(.green)
-												}
-												Spacer()
-											}
-											.padding(.leading, 5)
-											Rectangle()
-												.padding(.leading, 30)
-												.frame(height:1)
-												.offset(y:15)
-												.foregroundColor(.gray)
-										}
-									)
-								}
-							} else {
-								NavigationLink(destination: StationDetailView(mobileNo: item.mobileNo, stationId: item.stationId)){
-									ZStack{
-										HStack{
-											Text(item.stationName)
-												.lineLimit(1)
-												.foregroundColor(.black)
-											Text(item.stationId)
-											Text(item.mobileNo)
-											Text(item.districtCd)
-											Spacer()
-										}
-										.font(.system(size:20))
-										.padding(.leading, 30)
-										.frame(height:50)
-										.overlay(
-											ZStack{
-												HStack{
-													Circle()
-														.frame(width:10)
-														.foregroundColor(.gray)
-													Spacer()
-												}
-												.padding(.leading, 12)
-												HStack{
-													if(item.currentLocation){
-														Image(systemName: "bus")
-															.offset(y: 25)
-															.foregroundColor(.green)
-													}
-													Spacer()
-												}
-												.padding(.leading, 5)
-												
-												Rectangle()
-													.padding(.leading, 30)
-													.frame(height:1)
-													.offset(y:15)
-													.foregroundColor(.gray)
-											}
-										)
+						VStack(spacing: 0){
+							ForEach(getRouteInfo.routeInfoData.stationLists, id: \.self){ item in
+								if item.mobileNo == "via" {
+									RouteDetailRowView(stationName: item.stationName, stationId: item.stationId, mobileNo: item.mobileNo, districtCd: item.districtCd, currentLocation: item.currentLocation)
+								} else {
+									NavigationLink(destination: StationDetailView(mobileNo: item.mobileNo, stationId: item.stationId)){
+										
+										RouteDetailRowView(stationName: item.stationName, stationId: item.stationId, mobileNo: item.mobileNo, districtCd: item.districtCd, currentLocation: item.currentLocation)
+										
 									}
 								}
 							}
+							.buttonStyle(PlainButtonStyle())
 						}
 					}
 				}
@@ -117,23 +48,7 @@ struct RouteDetailView: View {
 				}
 			} else if getRouteInfo.isload == 1 {
 				VStack{
-					Text(getRouteInfo.resultCode)
-					Text(getRouteInfo.errMsg)
-					Button(action: {
-						getData()
-					}) {
-						HStack{
-							Image(systemName: "arrow.clockwise")
-							Text("다시 받아오기")
-						}
-					}
-				}
-			} else if getRouteInfo.isload == 2 {
-				VStack{
-					Text(getRouteInfo.routeInfoData.routeId)
-					Text(getRouteInfo.routeInfoData.routeName)
-					Text(getRouteInfo.resultCode)
-					Text(getRouteInfo.errMsg)
+					Text("정보를 받아오던중 오류가 발생했습니다.")
 					Button(action: {
 						getData()
 					}) {

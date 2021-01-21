@@ -37,6 +37,7 @@
 		3AE14F72259680E1009BEDA9 /* MainViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE14F71259680E1009BEDA9 /* MainViewLayout.swift */; };
 		3AE6E8A125A4CA6F0090D5D3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE6E8A025A4CA6F0090D5D3 /* Config.swift */; };
 		3AEC87A92598B500007214CB /* RouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC87A82598B500007214CB /* RouteInfo.swift */; };
+		3AF94B4325B335FF00B76816 /* RouteDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF94B4225B335FF00B76816 /* RouteDetailRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		3AE14F71259680E1009BEDA9 /* MainViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewLayout.swift; sourceTree = "<group>"; };
 		3AE6E8A025A4CA6F0090D5D3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3AEC87A82598B500007214CB /* RouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfo.swift; sourceTree = "<group>"; };
+		3AF94B4225B335FF00B76816 /* RouteDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				3ADC08202598786D008079D5 /* RouteDetailView.swift */,
+				3AF94B4225B335FF00B76816 /* RouteDetailRowView.swift */,
 				3ADC082325987873008079D5 /* StationDetailView.swift */,
 				3ADC08262598787E008079D5 /* StationAndRouteDetailView.swift */,
 			);
@@ -317,6 +320,7 @@
 				3A463E6B259F21D600F11CFA /* StationInfoPopupView.swift in Sources */,
 				3A8D7EB125962684008E5F70 /* BookmarkView.swift in Sources */,
 				3AE14F72259680E1009BEDA9 /* MainViewLayout.swift in Sources */,
+				3AF94B4325B335FF00B76816 /* RouteDetailRowView.swift in Sources */,
 				3AB04FFB259C6DBB0083B1E9 /* GetAnnotationData.swift in Sources */,
 				3AEC87A92598B500007214CB /* RouteInfo.swift in Sources */,
 				3ADC082425987873008079D5 /* StationDetailView.swift in Sources */,

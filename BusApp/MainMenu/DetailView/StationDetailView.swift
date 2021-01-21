@@ -39,11 +39,13 @@ struct StationDetailView: View {
 											   let predictTime1 = item.predictTime1, let predictTime2 = item.predictTime2{
 												Text("\(locationNo1) 정거장 전 | \(predictTime1) 분 후 도착")
 													.foregroundColor(.blue)
-												Text("\(locationNo2) 정거장 전 | \(predictTime2) 분 후 도착")
-													.foregroundColor(.blue)
+												if (locationNo2 != "nil") {
+													Text("\(locationNo2) 정거장 전 | \(predictTime2) 분 후 도착")
+														.foregroundColor(.blue)
+												}
 											} else {
 												Text("도착 정보가 없습니다.")
-													.foregroundColor(.yellow)
+													.foregroundColor(.orange)
 											}
 										} else if (getStationInfo.arrivalInfoLoad == 1) {
 											Text("도착 정보가 없습니다.")
@@ -61,25 +63,7 @@ struct StationDetailView: View {
 				.onAppear { getData2() }
 			} else if getStationInfo.informationLoad == 1 {						// 정류소 정보를 받지 못했을때
 				VStack{
-					Text(getStationInfo.resultCode)
-					Text(getStationInfo.errMsg)
-					Button(action: {
-						getData()
-					}) {
-						HStack{
-							Image(systemName: "arrow.clockwise")
-							Text("다시 받아오기")
-						}
-					}
-				}
-			} else if getStationInfo.informationLoad == 2 {
-				VStack{
-					Text(getStationInfo.stationInfoData.stationName)
-					Text(getStationInfo.stationInfoData.stationId)
-					Text(getStationInfo.stationInfoData.mobileNo)
-					Text(getStationInfo.stationInfoData.districtCd)
-					Text(getStationInfo.resultCode)
-					Text(getStationInfo.errMsg)
+					Text("정보를 받아오던 중 오류가 발생했습니다")
 					Button(action: {
 						getData()
 					}) {
@@ -93,9 +77,7 @@ struct StationDetailView: View {
 				Text("로딩중...")
 			}
 		}
-		.onAppear {
-			getData()
-		}
+		.onAppear { getData() }
 	}
 	private func getData(){
 		getStationInfo.getDataFromServer1(mobileNo: mobileNo, stationId: stationId)
